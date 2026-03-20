@@ -38,17 +38,6 @@
             </ul>
           </div>
           <div class="footer__nav-group">
-            <h4 class="footer__nav-title">Technologies</h4>
-            <ul class="footer__nav-list">
-              <li><span>Vue.js</span></li>
-              <li><span>React</span></li>
-              <li><span>Java</span></li>
-              <li><span>Spring Boot</span></li>
-              <li><span>JavaScript</span></li>
-              <li><span>REST APIs</span></li>
-            </ul>
-          </div>
-          <div class="footer__nav-group">
             <h4 class="footer__nav-title">Let's Connect</h4>
             <ul class="footer__nav-list">
               <li><a href="https://github.com/MilaniNcana" target="_blank" rel="noopener noreferrer">GitHub →</a></li>
@@ -66,15 +55,6 @@
       <div class="container footer__bottom-inner">
         <span class="footer__copy">
           © {{ new Date().getFullYear() }} Milani Ncana. All rights reserved.
-        </span>
-        <span class="footer__built">
-          Built with
-
-          <span class="footer__tech">Vue.js</span>
-          ·
-          <span class="footer__tech">Vite</span>
-          ·
-          <span class="footer__tech">JavaScript</span>
         </span>
       </div>
     </div>
@@ -160,7 +140,7 @@
 /* Nav */
 .footer__nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 

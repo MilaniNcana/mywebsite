@@ -105,11 +105,13 @@
             </div>
 
             <!-- Submit -->
-            <button type="submit" class="btn btn-primary form-submit" :class="{ 'btn-success': submitted }">
-              <svg v-if="submitted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <button type="submit" class="btn btn-primary form-submit" :disabled="submitting" :class="{ 'btn-success': submitted }">
+              <span v-if="submitting" class="btn-spinner"></span>
+              <svg v-else-if="submitted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
               <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              {{ submitted ? 'Opening Email Client...' : 'Send Message' }}
+              {{ submitted ? 'Message Sent!' : submitting ? 'Sending...' : 'Send Message' }}
             </button>
+            <p v-if="submitError" class="form-submit-error">{{ submitError }}</p>
           </form>
         </div>
       </div>
@@ -119,10 +121,25 @@
 
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import emailjs from '@emailjs/browser'
+
+// ─── EmailJS config ────────────────────────────────────────────────────────
+// Sign up free at https://www.emailjs.com then:
+//  1. Add an Email Service (Gmail / Outlook)
+//  2. Create an Email Template — template variables used below:
+//       {{from_name}}, {{from_email}}, {{subject}}, {{message}}
+//  3. Copy your Public Key from Account → API Keys
+//  4. Replace the three placeholders below
+const EJS_SERVICE  = 'YOUR_SERVICE_ID'
+const EJS_TEMPLATE = 'YOUR_TEMPLATE_ID'
+const EJS_KEY      = 'YOUR_PUBLIC_KEY'
+// ───────────────────────────────────────────────────────────────────────────
 
 const form = reactive({ name: '', email: '', subject: '', message: '' })
 const errors = reactive({ name: '', email: '', message: '' })
+const submitting = ref(false)
 const submitted = ref(false)
+const submitError = ref('')
 
 const contactInfo = [
   { icon: 'email', label: 'Email', value: 'milanincana@outlook.com', href: 'mailto:milanincana@outlook.com' },
@@ -160,19 +177,33 @@ function validate() {
   return valid
 }
 
-function handleSubmit() {
+async function handleSubmit() {
   if (!validate()) return
-  const subject = encodeURIComponent(form.subject || 'Portfolio Contact')
-  const body = encodeURIComponent(
-    `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
-  )
-  window.location.href = `mailto:milanincana@outlook.com?subject=${subject}&body=${body}`
-  submitted.value = true
-  form.name = ''
-  form.email = ''
-  form.subject = ''
-  form.message = ''
-  setTimeout(() => { submitted.value = false }, 4000)
+  submitting.value = true
+  submitError.value = ''
+  try {
+    await emailjs.send(
+      EJS_SERVICE,
+      EJS_TEMPLATE,
+      {
+        from_name:  form.name,
+        from_email: form.email,
+        subject:    form.subject || 'Portfolio Contact',
+        message:    form.message,
+      },
+      EJS_KEY
+    )
+    submitted.value = true
+    form.name = ''
+    form.email = ''
+    form.subject = ''
+    form.message = ''
+    setTimeout(() => { submitted.value = false }, 4000)
+  } catch {
+    submitError.value = 'Failed to send. Please try again or email milanincana@outlook.com directly.'
+  } finally {
+    submitting.value = false
+  }
 }
 
 let observer = null

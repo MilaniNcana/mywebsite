@@ -84,14 +84,14 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const techIcons = [
-  { name: 'Vue.js', icon: 'hub' },
-  { name: 'Java', icon: 'local_cafe' },
-  { name: 'Spring Boot', icon: 'eco' },
+  { name: 'Vue 3', icon: 'hub' },
   { name: 'TypeScript', icon: 'code' },
   { name: 'JavaScript', icon: 'javascript' },
-  { name: 'Bootstrap', icon: 'dashboard' },
-  { name: 'HTML5', icon: 'html' },
-  { name: 'SQL', icon: 'storage' },
+  { name: 'Java', icon: 'local_cafe' },
+  { name: 'Spring Boot', icon: 'eco' },
+  { name: 'Python', icon: 'terminal' },
+  { name: 'PostgreSQL', icon: 'storage' },
+  { name: 'REST APIs', icon: 'api' },
 ]
 
 const values = [

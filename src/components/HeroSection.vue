@@ -35,9 +35,9 @@
 
       <!-- Description -->
       <p class="hero__description reveal reveal-delay-3" :class="{ visible: loaded }">
-        A Junior Software Developer based in Cape Town, building web and desktop
-        applications with Vue.js, Java &amp; Spring Boot. Translating requirements
-        into functional systems through clean code and solid engineering.
+        A Software Developer based in Cape Town, building full-stack web
+        applications with Vue 3, TypeScript, Java &amp; Spring Boot. Translating
+        requirements into clean, functional systems with solid engineering.
       </p>
 
       <!-- CTA Buttons -->
@@ -98,9 +98,8 @@ const displayText = ref('')
 const isTyping = ref(true)
 
 const stats = [
-  { value: '2+', label: 'Years Experience' },
   { value: '15+', label: 'Projects Built' },
-  { value: '8+', label: 'Technologies' },
+  { value: '10+', label: 'Technologies' },
   { value: '100%', label: 'Dedication' },
 ]
 

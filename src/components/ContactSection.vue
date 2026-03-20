@@ -130,7 +130,7 @@ import emailjs from '@emailjs/browser'
 //       {{from_name}}, {{from_email}}, {{subject}}, {{message}}
 //  3. Copy your Public Key from Account → API Keys
 //  4. Replace the three placeholders below
-const EJS_SERVICE  = 'YOUR_SERVICE_ID'
+const EJS_SERVICE  = 'service_of9tnkc'
 const EJS_TEMPLATE = 'YOUR_TEMPLATE_ID'
 const EJS_KEY      = 'YOUR_PUBLIC_KEY'
 // ───────────────────────────────────────────────────────────────────────────

@@ -19,7 +19,7 @@
         <!-- Info cards -->
         <div class="contact__info reveal reveal-delay-2">
           <div v-for="info in contactInfo" :key="info.label" class="contact-info-card">
-            <div class="contact-info-card__icon">{{ info.icon }}</div>
+            <div class="contact-info-card__icon material-symbols-outlined">{{ info.icon }}</div>
             <div>
               <div class="contact-info-card__label">{{ info.label }}</div>
               <a :href="info.href" class="contact-info-card__value" target="_blank" rel="noopener noreferrer">
@@ -58,7 +58,7 @@
                   type="text"
                   class="form-input"
                   :class="{ 'form-input--error': errors.name }"
-                  placeholder="Jane Smith"
+                  placeholder="Alex Smith"
                   autocomplete="name"
                 />
                 <span v-if="errors.name" class="form-error">{{ errors.name }}</span>
@@ -72,7 +72,7 @@
                   type="email"
                   class="form-input"
                   :class="{ 'form-input--error': errors.email }"
-                  placeholder="jane@example.com"
+                  placeholder="alex@example.com"
                   autocomplete="email"
                 />
                 <span v-if="errors.email" class="form-error">{{ errors.email }}</span>
@@ -105,14 +105,11 @@
             </div>
 
             <!-- Submit -->
-            <button type="submit" class="btn btn-primary form-submit" :disabled="submitting" :class="{ 'btn-success': submitted }">
-              <span v-if="submitting" class="btn-spinner"></span>
-              <svg v-else-if="submitted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <button type="submit" class="btn btn-primary form-submit" :class="{ 'btn-success': submitted }">
+              <svg v-if="submitted" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
               <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              {{ submitted ? 'Message Sent!' : submitting ? 'Sending...' : 'Send Message' }}
+              {{ submitted ? 'Opening Email Client...' : 'Send Message' }}
             </button>
-
-            <p v-if="submitError" class="form-submit-error">{{ submitError }}</p>
           </form>
         </div>
       </div>
@@ -125,14 +122,12 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 const form = reactive({ name: '', email: '', subject: '', message: '' })
 const errors = reactive({ name: '', email: '', message: '' })
-const submitting = ref(false)
 const submitted = ref(false)
-const submitError = ref('')
 
 const contactInfo = [
-  { icon: '📧', label: 'Email', value: 'milanincana@outlook.com', href: 'mailto:milanincana@outlook.com' },
-  { icon: '📍', label: 'Location', value: 'Cape Town, Western Cape', href: '#' },
-  { icon: '⏰', label: 'Response Time', value: 'Within 24 hours', href: '#' },
+  { icon: 'email', label: 'Email', value: 'milanincana@outlook.com', href: 'mailto:milanincana@outlook.com' },
+  { icon: 'location_on', label: 'Location', value: 'Cape Town, Western Cape', href: '#' },
+  { icon: 'schedule', label: 'Response Time', value: 'Within 24 hours', href: '#' },
 ]
 
 const socials = [
@@ -165,13 +160,13 @@ function validate() {
   return valid
 }
 
-async function handleSubmit() {
+function handleSubmit() {
   if (!validate()) return
-  submitting.value = true
-  submitError.value = ''
-  // Simulate sending (replace with actual API call / EmailJS / Formspree)
-  await new Promise(r => setTimeout(r, 1500))
-  submitting.value = false
+  const subject = encodeURIComponent(form.subject || 'Portfolio Contact')
+  const body = encodeURIComponent(
+    `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
+  )
+  window.location.href = `mailto:milanincana@outlook.com?subject=${subject}&body=${body}`
   submitted.value = true
   form.name = ''
   form.email = ''
@@ -245,6 +240,8 @@ onUnmounted(() => observer?.disconnect())
 .contact-info-card__icon {
   font-size: 1.5rem;
   flex-shrink: 0;
+  color: var(--mustard);
+  line-height: 1;
 }
 
 .contact-info-card__label {

@@ -224,7 +224,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   bottom: 0;
   background: rgba(8, 8, 8, 0.98);
   backdrop-filter: blur(20px);
-  z-index: -1;
+  z-index: 998;
   padding-top: 100px;
   transform: translateY(-100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);

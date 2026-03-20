@@ -40,7 +40,7 @@
             <!-- Connector -->
             <div class="timeline__connector">
               <div class="timeline__dot" :style="`border-color: ${item.color}`">
-                <span>{{ item.icon }}</span>
+                <span class="material-symbols-outlined" style="font-size:1rem">{{ item.icon }}</span>
               </div>
               <div class="timeline__line" v-if="i < activeItems.length - 1"></div>
             </div>
@@ -91,13 +91,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 
 const activeTab = ref('Work Experience')
 
 const workItems = [
   {
-    icon: '💼',
+    icon: 'work',
     title: 'Software Developer',
     organization: 'Trogster',
     abbr: 'TG',
@@ -116,7 +116,7 @@ const workItems = [
     ],
   },
   {
-    icon: '🖥️',
+    icon: 'computer',
     title: 'Technical Support',
     organization: 'Manyano High School',
     abbr: 'MH',
@@ -135,7 +135,7 @@ const workItems = [
     ],
   },
   {
-    icon: '🚀',
+    icon: 'rocket_launch',
     title: 'System Developer Intern',
     organization: 'EOH (Century City)',
     abbr: 'EOH',
@@ -157,7 +157,7 @@ const workItems = [
 
 const educationItems = [
   {
-    icon: '🎓',
+    icon: 'school',
     title: 'National Diploma — ICT: Application Development',
     organization: 'Cape Peninsula University of Technology',
     abbr: 'CPUT',
@@ -175,7 +175,7 @@ const educationItems = [
     ],
   },
   {
-    icon: '📜',
+    icon: 'description',
     title: 'Higher Certificate — Information Technology Service Management',
     organization: 'Cape Peninsula University of Technology',
     abbr: 'CPUT',
@@ -192,7 +192,7 @@ const educationItems = [
     ],
   },
   {
-    icon: '🏅',
+    icon: 'military_tech',
     title: 'National Certificate — Information Technology and Computer Science',
     organization: 'False Bay College',
     abbr: 'FBC',
@@ -215,6 +215,12 @@ const activeItems = computed(() =>
 )
 
 let observer = null
+
+watch(activeTab, () => {
+  nextTick(() => {
+    document.querySelectorAll('#experience .timeline__item').forEach(el => el.classList.add('visible'))
+  })
+})
 
 onMounted(() => {
   observer = new IntersectionObserver(

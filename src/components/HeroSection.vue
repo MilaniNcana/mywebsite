@@ -35,7 +35,7 @@
 
       <!-- Description -->
       <p class="hero__description reveal reveal-delay-3" :class="{ visible: loaded }">
-        A Junior Software Developer based in Cape Town, building web and desktop
+        A<span class= "name-word name-accent"> Software Developer</span> based in Cape Town, building web and desktop
         applications with Vue.js, Java &amp; Spring Boot. Translating requirements
         into functional systems through clean code and solid engineering.
       </p>

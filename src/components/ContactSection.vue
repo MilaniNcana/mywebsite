@@ -130,8 +130,8 @@ const submitted = ref(false)
 const submitError = ref('')
 
 const contactInfo = [
-  { icon: '📧', label: 'Email', value: 'milani@example.com', href: 'mailto:milani@example.com' },
-  { icon: '📍', label: 'Location', value: 'South Africa', href: '#' },
+  { icon: '📧', label: 'Email', value: 'milanincana@outlook.com', href: 'mailto:milanincana@outlook.com' },
+  { icon: '📍', label: 'Location', value: 'Cape Town, Western Cape', href: '#' },
   { icon: '⏰', label: 'Response Time', value: 'Within 24 hours', href: '#' },
 ]
 

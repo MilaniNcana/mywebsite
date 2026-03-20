@@ -81,21 +81,21 @@ const tabs = [
 const skills = [
   { name: 'Vue.js', icon: '💚', level: 90, category: 'frontend', color: 'linear-gradient(90deg, #41B883, #35495E)' },
   { name: 'JavaScript', icon: '🟨', level: 88, category: 'frontend', color: 'linear-gradient(90deg, #F7DF1E, #D4A017)' },
+  { name: 'TypeScript', icon: '🔷', level: 78, category: 'frontend', color: 'linear-gradient(90deg, #3178C6, #235A97)' },
   { name: 'HTML5', icon: '🧡', level: 92, category: 'frontend', color: 'linear-gradient(90deg, #E34F26, #D4A017)' },
   { name: 'CSS3', icon: '💙', level: 88, category: 'frontend', color: 'linear-gradient(90deg, #1572B6, #7D1128)' },
-  { name: 'React', icon: '⚛️', level: 75, category: 'frontend', color: 'linear-gradient(90deg, #61DAFB, #1572B6)' },
+  { name: 'Bootstrap', icon: '🟣', level: 82, category: 'frontend', color: 'linear-gradient(90deg, #7952B3, #5A2D9A)' },
   { name: 'Java', icon: '☕', level: 85, category: 'backend', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
   { name: 'Spring Boot', icon: '🌱', level: 80, category: 'backend', color: 'linear-gradient(90deg, #6DB33F, #45A029)' },
-  { name: 'Node.js', icon: '🟩', level: 72, category: 'backend', color: 'linear-gradient(90deg, #339933, #D4A017)' },
   { name: 'REST APIs', icon: '🔌', level: 85, category: 'backend', color: 'linear-gradient(90deg, #7D1128, #9B1635)' },
-  { name: 'MySQL', icon: '🐬', level: 75, category: 'backend', color: 'linear-gradient(90deg, #4479A1, #7D1128)' },
+  { name: 'SQL', icon: '🗄️', level: 78, category: 'backend', color: 'linear-gradient(90deg, #4479A1, #7D1128)' },
   { name: 'Git', icon: '🔀', level: 85, category: 'tools', color: 'linear-gradient(90deg, #F05032, #D4A017)' },
   { name: 'Figma', icon: '🎨', level: 65, category: 'tools', color: 'linear-gradient(90deg, #F24E1E, #A259FF)' },
 ]
 
 const extraTools = [
-  'GitHub', 'VS Code', 'IntelliJ IDEA', 'Postman', 'Docker', 'Maven',
-  'Responsive Design', 'Agile/Scrum', 'Unit Testing', 'TypeScript',
+  'GitHub', 'VS Code', 'Unit Testing', 'CORS', 'Agile Development',
+  'System Analysis', 'Problem Solving', 'L1/L2 User Support', 'Windows Troubleshooting',
 ]
 
 const filteredSkills = computed(() =>

@@ -55,8 +55,8 @@
         </p>
         <p class="about__text reveal reveal-delay-2">
           My journey in software development is driven by curiosity and a love for clean, efficient
-          code. Whether I'm architecting a Spring Boot microservice or crafting a pixel-perfect
-          Vue.js component, I bring the same level of dedication and attention to detail.
+          code. Whether I'm building a Spring Boot REST API or crafting a responsive
+          Vue.js interface, I bring the same level of dedication and attention to detail.
         </p>
 
         <!-- Key values -->
@@ -85,13 +85,13 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const techIcons = [
   { name: 'Vue.js', icon: '💚' },
-  { name: 'React', icon: '⚛️' },
   { name: 'Java', icon: '☕' },
   { name: 'Spring Boot', icon: '🌱' },
+  { name: 'TypeScript', icon: '🔷' },
   { name: 'JavaScript', icon: '🟨' },
+  { name: 'Bootstrap', icon: '🟣' },
   { name: 'HTML5', icon: '🧡' },
-  { name: 'CSS3', icon: '💙' },
-  { name: 'Node.js', icon: '🟩' },
+  { name: 'SQL', icon: '🗄️' },
 ]
 
 const values = [

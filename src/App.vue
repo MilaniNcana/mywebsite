@@ -25,6 +25,9 @@
     <!-- Footer -->
     <FooterSection />
 
+    <!-- Surprise Me floating button -->
+    <SurpriseMe />
+
     <!-- Page loading indicator -->
     <div class="page-loader" :class="{ 'page-loader--done': pageReady }">
       <div class="loader-logo">
@@ -47,6 +50,7 @@ import ProjectsSection from '@/components/ProjectsSection.vue'
 import ExperienceSection from '@/components/ExperienceSection.vue'
 import ContactSection from '@/components/ContactSection.vue'
 import FooterSection from '@/components/FooterSection.vue'
+import SurpriseMe from '@/components/SurpriseMe.vue'
 
 const showBackToTop = ref(false)
 const pageReady = ref(false)

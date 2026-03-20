@@ -69,6 +69,7 @@
         </span>
         <span class="footer__built">
           Built with
+
           <span class="footer__tech">Vue.js</span>
           ·
           <span class="footer__tech">Vite</span>

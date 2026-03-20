@@ -14,7 +14,7 @@
       <!-- Greeting -->
       <div class="hero__greeting reveal" :class="{ visible: loaded }">
         <span class="hero__greeting-text">
-          <span class="mono-accent">👋</span> Hello, World! I'm
+          <span class="mono-accent material-symbols-outlined" style="font-size:1.1rem;vertical-align:middle">waving_hand</span> Hello, World! I'm
         </span>
       </div>
 
@@ -50,9 +50,9 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Get In Touch
         </a>
-        <a href="#" class="btn btn-burgundy hero__btn" download>
+        <a href="mailto:milanincana@outlook.com?subject=CV%20Request&body=Hi%20Milani%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20CV." class="btn btn-burgundy hero__btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Resume
+          CV
         </a>
       </div>
 

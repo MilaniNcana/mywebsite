@@ -50,7 +50,7 @@
                 </div>
               </div>
               <div v-if="project.featured" class="project-card__featured-badge">
-                ⭐ Featured
+                <span class="material-symbols-outlined" style="font-size:12px;vertical-align:middle;line-height:1">star</span> Featured
               </div>
             </div>
 
@@ -90,7 +90,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 
 const activeFilter = ref('All')
 const filters = ['All', 'Full Stack', 'Vue.js', 'Java', 'Frontend']
@@ -145,6 +145,12 @@ const filteredProjects = computed(() =>
 )
 
 let observer = null
+
+watch(activeFilter, () => {
+  nextTick(() => {
+    document.querySelectorAll('#projects .project-card').forEach(el => el.classList.add('visible'))
+  })
+})
 
 onMounted(() => {
   observer = new IntersectionObserver(

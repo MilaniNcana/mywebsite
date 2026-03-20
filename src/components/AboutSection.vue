@@ -33,7 +33,7 @@
         <!-- Tech stack quick icons -->
         <div class="about__tech-icons">
           <div v-for="tech in techIcons" :key="tech.name" class="tech-icon-pill" :title="tech.name">
-            <span class="tech-icon-emoji">{{ tech.icon }}</span>
+            <span class="material-symbols-outlined tech-icon-emoji">{{ tech.icon }}</span>
             <span class="tech-icon-name">{{ tech.name }}</span>
           </div>
         </div>
@@ -62,7 +62,7 @@
         <!-- Key values -->
         <div class="about__values reveal reveal-delay-3">
           <div v-for="val in values" :key="val.title" class="value-card">
-            <div class="value-card__icon">{{ val.icon }}</div>
+            <div class="value-card__icon material-symbols-outlined">{{ val.icon }}</div>
             <div>
               <div class="value-card__title">{{ val.title }}</div>
               <div class="value-card__desc">{{ val.desc }}</div>
@@ -84,20 +84,20 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const techIcons = [
-  { name: 'Vue.js', icon: '💚' },
-  { name: 'Java', icon: '☕' },
-  { name: 'Spring Boot', icon: '🌱' },
-  { name: 'TypeScript', icon: '🔷' },
-  { name: 'JavaScript', icon: '🟨' },
-  { name: 'Bootstrap', icon: '🟣' },
-  { name: 'HTML5', icon: '🧡' },
-  { name: 'SQL', icon: '🗄️' },
+  { name: 'Vue.js', icon: 'hub' },
+  { name: 'Java', icon: 'local_cafe' },
+  { name: 'Spring Boot', icon: 'eco' },
+  { name: 'TypeScript', icon: 'code' },
+  { name: 'JavaScript', icon: 'javascript' },
+  { name: 'Bootstrap', icon: 'dashboard' },
+  { name: 'HTML5', icon: 'html' },
+  { name: 'SQL', icon: 'storage' },
 ]
 
 const values = [
-  { icon: '🎯', title: 'Clean Code', desc: 'Readable, maintainable, and well-structured' },
-  { icon: '🚀', title: 'Performance', desc: 'Fast, optimized, and scalable solutions' },
-  { icon: '✨', title: 'UX Focused', desc: 'User experience is always the priority' },
+  { icon: 'gps_fixed', title: 'Clean Code', desc: 'Readable, maintainable, and well-structured' },
+  { icon: 'rocket_launch', title: 'Performance', desc: 'Fast, optimized, and scalable solutions' },
+  { icon: 'auto_awesome', title: 'UX Focused', desc: 'User experience is always the priority' },
 ]
 
 const visualRef = ref(null)
@@ -270,7 +270,8 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .tech-icon-emoji {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .tech-icon-name {
@@ -329,8 +330,10 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .value-card__icon {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   flex-shrink: 0;
+  color: var(--mustard);
+  line-height: 1;
 }
 
 .value-card__title {

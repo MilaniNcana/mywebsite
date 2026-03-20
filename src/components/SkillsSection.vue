@@ -30,14 +30,15 @@
       <!-- Skills grid -->
       <div class="skills__grid">
         <div
-          v-for="(skill, i) in filteredSkills"
+          v-for="skill in filteredSkills"
           :key="skill.name"
-          class="skill-card reveal"
-          :class="`reveal-delay-${Math.min(i % 4 + 1, 5)}`"
+          class="skill-card"
           :style="`--skill-level: ${skill.level}%`"
         >
           <div class="skill-card__top">
-            <div class="skill-card__icon">{{ skill.icon }}</div>
+            <div class="skill-card__icon">
+              <span class="material-symbols-outlined">{{ skill.icon }}</span>
+            </div>
             <div class="skill-card__info">
               <span class="skill-card__name">{{ skill.name }}</span>
               <span class="skill-card__category">{{ skill.category }}</span>
@@ -47,8 +48,7 @@
           <div class="skill-card__bar-track">
             <div
               class="skill-card__bar-fill"
-              :style="`background: ${skill.color}`"
-              :data-visible="visibleCards.has(skill.name)"
+              :style="`background: ${skill.color}; width: ${skill.level}%`"
             ></div>
           </div>
         </div>
@@ -69,33 +69,38 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const activeTab = ref('all')
-const visibleCards = ref(new Set())
 
 const tabs = [
   { id: 'all', label: 'All Skills' },
   { id: 'frontend', label: 'Frontend' },
   { id: 'backend', label: 'Backend' },
   { id: 'tools', label: 'Tools & Other' },
+  { id: 'support', label: 'Technical Support' },
 ]
 
 const skills = [
-  { name: 'Vue.js', icon: '💚', level: 90, category: 'frontend', color: 'linear-gradient(90deg, #41B883, #35495E)' },
-  { name: 'JavaScript', icon: '🟨', level: 88, category: 'frontend', color: 'linear-gradient(90deg, #F7DF1E, #D4A017)' },
-  { name: 'TypeScript', icon: '🔷', level: 78, category: 'frontend', color: 'linear-gradient(90deg, #3178C6, #235A97)' },
-  { name: 'HTML5', icon: '🧡', level: 92, category: 'frontend', color: 'linear-gradient(90deg, #E34F26, #D4A017)' },
-  { name: 'CSS3', icon: '💙', level: 88, category: 'frontend', color: 'linear-gradient(90deg, #1572B6, #7D1128)' },
-  { name: 'Bootstrap', icon: '🟣', level: 82, category: 'frontend', color: 'linear-gradient(90deg, #7952B3, #5A2D9A)' },
-  { name: 'Java', icon: '☕', level: 85, category: 'backend', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
-  { name: 'Spring Boot', icon: '🌱', level: 80, category: 'backend', color: 'linear-gradient(90deg, #6DB33F, #45A029)' },
-  { name: 'REST APIs', icon: '🔌', level: 85, category: 'backend', color: 'linear-gradient(90deg, #7D1128, #9B1635)' },
-  { name: 'SQL', icon: '🗄️', level: 78, category: 'backend', color: 'linear-gradient(90deg, #4479A1, #7D1128)' },
-  { name: 'Git', icon: '🔀', level: 85, category: 'tools', color: 'linear-gradient(90deg, #F05032, #D4A017)' },
-  { name: 'Figma', icon: '🎨', level: 65, category: 'tools', color: 'linear-gradient(90deg, #F24E1E, #A259FF)' },
+  { name: 'Vue.js', icon: 'hub', level: 90, category: 'frontend', color: 'linear-gradient(90deg, #41B883, #35495E)' },
+  { name: 'JavaScript', icon: 'javascript', level: 88, category: 'frontend', color: 'linear-gradient(90deg, #F7DF1E, #D4A017)' },
+  { name: 'TypeScript', icon: 'code', level: 78, category: 'frontend', color: 'linear-gradient(90deg, #3178C6, #235A97)' },
+  { name: 'HTML5', icon: 'html', level: 92, category: 'frontend', color: 'linear-gradient(90deg, #E34F26, #D4A017)' },
+  { name: 'CSS3', icon: 'css', level: 88, category: 'frontend', color: 'linear-gradient(90deg, #1572B6, #7D1128)' },
+  { name: 'Bootstrap', icon: 'dashboard', level: 82, category: 'frontend', color: 'linear-gradient(90deg, #7952B3, #5A2D9A)' },
+  { name: 'Java', icon: 'local_cafe', level: 85, category: 'backend', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
+  { name: 'Spring Boot', icon: 'eco', level: 80, category: 'backend', color: 'linear-gradient(90deg, #6DB33F, #45A029)' },
+  { name: 'REST APIs', icon: 'api', level: 85, category: 'backend', color: 'linear-gradient(90deg, #7D1128, #9B1635)' },
+  { name: 'SQL', icon: 'storage', level: 78, category: 'backend', color: 'linear-gradient(90deg, #4479A1, #7D1128)' },
+  { name: 'Git', icon: 'account_tree', level: 85, category: 'tools', color: 'linear-gradient(90deg, #F05032, #D4A017)' },
+  { name: 'Figma', icon: 'palette', level: 65, category: 'tools', color: 'linear-gradient(90deg, #F24E1E, #A259FF)' },
+  { name: 'Windows Support', icon: 'computer', level: 88, category: 'support', color: 'linear-gradient(90deg, #0078D4, #005a9e)' },
+  { name: 'Hardware Repair', icon: 'build', level: 80, category: 'support', color: 'linear-gradient(90deg, #7D1128, #9B1635)' },
+  { name: 'Networking', icon: 'router', level: 75, category: 'support', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
+  { name: 'User Support', icon: 'support_agent', level: 90, category: 'support', color: 'linear-gradient(90deg, #41B883, #35495E)' },
+  { name: 'ITSM', icon: 'settings_suggest', level: 78, category: 'support', color: 'linear-gradient(90deg, #6DB33F, #45A029)' },
 ]
 
 const extraTools = [
   'GitHub', 'VS Code', 'Unit Testing', 'CORS', 'Agile Development',
-  'System Analysis', 'Problem Solving', 'L1/L2 User Support', 'Windows Troubleshooting',
+  'System Analysis', 'Problem Solving',
 ]
 
 const filteredSkills = computed(() =>
@@ -108,11 +113,7 @@ onMounted(() => {
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible')
-          const name = e.target.querySelector('.skill-card__name')?.textContent
-          if (name) visibleCards.value.add(name)
-        }
+        if (e.isIntersecting) e.target.classList.add('visible')
       })
     },
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
@@ -201,8 +202,19 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .skill-card__icon {
-  font-size: 1.5rem;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--bg-surface-2);
+  border-radius: 8px;
+  color: var(--mustard);
+}
+
+.skill-card__icon .material-symbols-outlined {
+  font-size: 1.2rem;
 }
 
 .skill-card__info {
@@ -241,13 +253,8 @@ onUnmounted(() => observer?.disconnect())
 
 .skill-card__bar-fill {
   height: 100%;
-  width: 0%;
   border-radius: 3px;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.skill-card__bar-fill[data-visible="true"] {
-  width: var(--skill-level);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Extras */

@@ -69,13 +69,12 @@
         </span>
         <span class="footer__built">
           Built with
-          <span class="footer__heart material-symbols-outlined" style="font-size:14px;vertical-align:middle">favorite</span>
-          using
+
           <span class="footer__tech">Vue.js</span>
           ·
           <span class="footer__tech">Vite</span>
           ·
-          <span class="footer__tech">Vercel</span>
+          <span class="footer__tech">JavaScript</span>
         </span>
       </div>
     </div>

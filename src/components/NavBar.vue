@@ -34,9 +34,16 @@
         <span></span>
       </button>
     </div>
+  </nav>
 
-    <!-- Mobile Menu -->
+  <!-- Mobile Menu — teleported to body so it doesn't inherit nav's stacking context -->
+  <Teleport to="body">
     <div class="mobile-menu" :class="{ 'mobile-menu--open': menuOpen }">
+      <!-- Close button -->
+      <button class="mobile-menu__close" @click="closeMenu" aria-label="Close menu">
+        <span></span>
+        <span></span>
+      </button>
       <ul class="mobile-menu__links">
         <li v-for="link in navLinks" :key="link.href">
           <a :href="link.href" class="mobile-menu__link" @click="closeMenu">{{ link.label }}</a>
@@ -46,7 +53,7 @@
         </li>
       </ul>
     </div>
-  </nav>
+  </Teleport>
 </template>
 
 <script setup>
@@ -99,7 +106,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--z-nav);
+  z-index: 1000;
   padding: 20px 0;
   transition: all 0.3s ease;
 }
@@ -189,6 +196,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   background: none;
   border: none;
   margin-left: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .navbar__burger span {
@@ -201,6 +210,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   transform-origin: center;
 }
 
+/* Burger → X when open */
 .navbar--open .navbar__burger span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -214,7 +224,18 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile menu */
+@media (max-width: 900px) {
+  .navbar__links, .navbar__cta {
+    display: none;
+  }
+  .navbar__burger {
+    display: flex;
+  }
+}
+</style>
+
+<!-- Mobile menu styles (not scoped so they apply after Teleport) -->
+<style>
 .mobile-menu {
   display: none;
   position: fixed;
@@ -224,7 +245,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   bottom: 0;
   background: rgba(8, 8, 8, 0.98);
   backdrop-filter: blur(20px);
-  z-index: 998;
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
   padding-top: 100px;
   transform: translateY(-100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -232,6 +254,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 .mobile-menu--open {
   transform: translateY(0);
+}
+
+.mobile-menu__close {
+  display: none;
 }
 
 .mobile-menu__links {
@@ -245,34 +271,29 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .mobile-menu__link {
   font-size: 1.5rem;
   font-weight: 700;
-  font-family: var(--font-display);
-  color: var(--text-secondary);
+  font-family: 'Space Grotesk', sans-serif;
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   padding: 12px 32px;
-  border-radius: var(--radius-md);
+  border-radius: 12px;
   transition: all 0.2s ease;
   width: 100%;
   text-align: center;
 }
 
 .mobile-menu__link:hover {
-  color: var(--mustard);
-  background: var(--mustard-subtle);
+  color: #D4A017;
+  background: rgba(212, 160, 23, 0.08);
 }
 
 .mobile-cta {
   margin-top: 12px;
   width: 100%;
+  display: flex;
   justify-content: center;
 }
 
 @media (max-width: 900px) {
-  .navbar__links, .navbar__cta {
-    display: none;
-  }
-  .navbar__burger {
-    display: flex;
-  }
   .mobile-menu {
     display: block;
   }

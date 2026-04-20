@@ -121,8 +121,8 @@ const projects = [
   },
   {
     title: 'StyleForLess',
-    description: 'A peer-to-peer platform for buying and selling high-end second-hand clothing. I built the Bootstrap-based frontend and contributed to the PHP backend.',
-    tags: ['Bootstrap', 'PHP', 'Vue.js', 'CSS'],
+    description: 'A peer-to-peer platform for buying and selling high-end second-hand clothing. I built the Bootstrap-based frontend using Vue.js — making high-end style accessible to everyone.',
+    tags: ['Bootstrap', 'Vue.js', 'CSS'],
     category: ['Frontend', 'Vue.js'],
     gradient: 'linear-gradient(135deg, #1a0e0e 0%, #2e1515 50%, #3a1a1a 100%)',
     featured: false,

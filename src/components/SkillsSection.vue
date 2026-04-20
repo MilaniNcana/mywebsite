@@ -76,6 +76,7 @@ const tabs = [
   { id: 'backend', label: 'Backend' },
   { id: 'tools', label: 'Tools & Other' },
   { id: 'support', label: 'Technical Support' },
+  { id: 'marketing', label: 'Marketing' },
 ]
 
 const skills = [
@@ -96,6 +97,10 @@ const skills = [
   { name: 'Networking', icon: 'router', level: 75, category: 'support', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
   { name: 'User Support', icon: 'support_agent', level: 90, category: 'support', color: 'linear-gradient(90deg, #41B883, #35495E)' },
   { name: 'ITSM', icon: 'settings_suggest', level: 78, category: 'support', color: 'linear-gradient(90deg, #6DB33F, #45A029)' },
+  { name: 'Social Media', icon: 'share', level: 85, category: 'marketing', color: 'linear-gradient(90deg, #E1306C, #833AB4)' },
+  { name: 'SEO', icon: 'search', level: 78, category: 'marketing', color: 'linear-gradient(90deg, #4285F4, #34A853)' },
+  { name: 'Content Creation', icon: 'edit_note', level: 82, category: 'marketing', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
+  { name: 'Paid Ads', icon: 'ads_click', level: 75, category: 'marketing', color: 'linear-gradient(90deg, #7D1128, #9B1635)' },
 ]
 
 const extraTools = [

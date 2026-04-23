@@ -87,8 +87,8 @@ const items = [
     typeIcon: 'folder_special',
     icon: 'checkroom',
     title: 'StyleForLess',
-    body: 'A second-hand fashion marketplace. I built the Bootstrap frontend and contributed to the PHP backend — making high-end style accessible to everyone.',
-    tags: ['Bootstrap', 'PHP', 'Vue.js'],
+    body: 'A second-hand fashion marketplace. I built the Bootstrap-based frontend using Vue.js — making high-end style accessible to everyone.',
+    tags: ['Bootstrap', 'Vue.js'],
   },
   // Skills
   {

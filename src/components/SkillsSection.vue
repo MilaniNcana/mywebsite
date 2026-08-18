@@ -1,6 +1,5 @@
 <template>
   <section id="skills" class="section skills">
-    <div class="glow-orb glow-burgundy" style="width:500px;height:500px;top:0;right:-150px;opacity:0.4"></div>
 
     <div class="container">
       <div class="skills__header">

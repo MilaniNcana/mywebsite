@@ -1,6 +1,5 @@
 <template>
   <section id="experience" class="section experience">
-    <div class="glow-orb glow-burgundy" style="width:600px;height:600px;top:0;right:-200px;opacity:0.3"></div>
 
     <div class="container experience__inner">
       <!-- Header -->

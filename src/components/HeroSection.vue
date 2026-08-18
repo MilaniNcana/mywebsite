@@ -1,15 +1,5 @@
 <template>
   <section id="home" class="hero">
-    <!-- Particle Canvas -->
-    <canvas ref="canvasRef" class="hero__canvas"></canvas>
-
-    <!-- Background grid -->
-    <div class="hero__grid"></div>
-
-    <!-- Glow orbs -->
-    <div class="glow-orb glow-mustard" style="width:500px;height:500px;top:-100px;right:-100px;opacity:0.6"></div>
-    <div class="glow-orb glow-burgundy" style="width:400px;height:400px;bottom:0;left:-80px;opacity:0.5"></div>
-
     <div class="container hero__content">
       <!-- Greeting -->
       <div class="hero__greeting reveal" :class="{ visible: loaded }">
@@ -92,7 +82,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const canvasRef = ref(null)
 const loaded = ref(false)
 const displayText = ref('')
 const isTyping = ref(true)
@@ -138,101 +127,13 @@ function eraseText() {
   }
 }
 
-// Canvas Particle System
-let animFrame = null
-let particles = []
-
-function initCanvas() {
-  const canvas = canvasRef.value
-  if (!canvas) return
-  const ctx = canvas.getContext('2d')
-
-  function resize() {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-  }
-  resize()
-  window.addEventListener('resize', resize)
-
-  const PARTICLE_COUNT = Math.min(60, Math.floor(window.innerWidth / 20))
-
-  class Particle {
-    constructor() { this.reset() }
-    reset() {
-      this.x = Math.random() * canvas.width
-      this.y = Math.random() * canvas.height
-      this.size = Math.random() * 2 + 0.5
-      this.speedX = (Math.random() - 0.5) * 0.4
-      this.speedY = (Math.random() - 0.5) * 0.4
-      this.opacity = Math.random() * 0.5 + 0.1
-      this.color = Math.random() > 0.6 ? '#D4A017' : Math.random() > 0.5 ? '#7D1128' : '#444'
-    }
-    update() {
-      this.x += this.speedX
-      this.y += this.speedY
-      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-        this.reset()
-      }
-    }
-    draw() {
-      ctx.save()
-      ctx.globalAlpha = this.opacity
-      ctx.fillStyle = this.color
-      ctx.beginPath()
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.restore()
-    }
-  }
-
-  particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle())
-
-  function drawLines() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x
-        const dy = particles[i].y - particles[j].y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < 120) {
-          ctx.save()
-          ctx.globalAlpha = (1 - dist / 120) * 0.08
-          ctx.strokeStyle = '#D4A017'
-          ctx.lineWidth = 0.5
-          ctx.beginPath()
-          ctx.moveTo(particles[i].x, particles[i].y)
-          ctx.lineTo(particles[j].x, particles[j].y)
-          ctx.stroke()
-          ctx.restore()
-        }
-      }
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    particles.forEach(p => { p.update(); p.draw() })
-    drawLines()
-    animFrame = requestAnimationFrame(animate)
-  }
-  animate()
-
-  return () => {
-    window.removeEventListener('resize', resize)
-    cancelAnimationFrame(animFrame)
-  }
-}
-
-let cleanupCanvas = null
-
 onMounted(() => {
   setTimeout(() => { loaded.value = true }, 100)
   typingTimeout = setTimeout(typeText, 800)
-  cleanupCanvas = initCanvas()
 })
 
 onUnmounted(() => {
   clearTimeout(typingTimeout)
-  cleanupCanvas?.()
 })
 </script>
 
@@ -244,23 +145,6 @@ onUnmounted(() => {
   align-items: center;
   overflow: hidden;
   background: var(--bg-base);
-}
-
-.hero__canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  z-index: 0;
-  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
 }
 
 .hero__content {

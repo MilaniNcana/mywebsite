@@ -37,7 +37,57 @@
           >
             <!-- Card thumbnail -->
             <div class="project-card__thumb" :style="`background: ${project.gradient}`">
-              <span class="project-thumb__letter">{{ project.title.charAt(0) }}</span>
+              <!-- Trogster sneak peek -->
+              <div v-if="project.preview === 'trogster'" class="trogster-preview">
+                <div class="tp-topbar">
+                  <span class="tp-topbar__logo">T</span>
+                  <span class="tp-topbar__title">Trogster</span>
+                  <div class="tp-topbar__statuses">
+                    <span class="tp-status-pill tp-status-pill--done">3 Done</span>
+                    <span class="tp-status-pill tp-status-pill--active">2 Active</span>
+                  </div>
+                </div>
+                <div class="tp-body">
+                  <div class="tp-sidebar">
+                    <div class="tp-sidebar__item tp-sidebar__item--active">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <div class="tp-sidebar__item">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="tp-sidebar__item">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                    </div>
+                    <div class="tp-sidebar__item">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M4.93 4.93a10 10 0 000 14.14"/></svg>
+                    </div>
+                  </div>
+                  <div class="tp-tasks">
+                    <div class="tp-task">
+                      <span class="tp-dot tp-dot--done"></span>
+                      <span class="tp-task__bar" style="width:58%"></span>
+                      <span class="tp-badge tp-badge--done">Done</span>
+                    </div>
+                    <div class="tp-task">
+                      <span class="tp-dot tp-dot--active"></span>
+                      <span class="tp-task__bar" style="width:42%"></span>
+                      <span class="tp-badge tp-badge--active">Active</span>
+                    </div>
+                    <div class="tp-task">
+                      <span class="tp-dot tp-dot--active"></span>
+                      <span class="tp-task__bar" style="width:67%"></span>
+                      <span class="tp-badge tp-badge--active">Active</span>
+                    </div>
+                    <div class="tp-task">
+                      <span class="tp-dot tp-dot--pending"></span>
+                      <span class="tp-task__bar" style="width:35%"></span>
+                      <span class="tp-badge tp-badge--pending">Pending</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Default letter thumbnail -->
+              <span v-else class="project-thumb__letter">{{ project.title.charAt(0) }}</span>
               <div v-if="project.featured" class="project-card__featured-badge">Featured</div>
             </div>
 
@@ -53,7 +103,7 @@
               <div class="project-card__links">
                 <a v-if="project.demo" :href="project.demo" target="_blank" class="project-link project-link--demo" rel="noopener noreferrer">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  Live Demo
+                  {{ project.demoLabel || 'Live Demo' }}
                 </a>
                 <a :href="project.github" target="_blank" class="project-link project-link--github" rel="noopener noreferrer">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -90,6 +140,8 @@ const projects = [
     category: ['Vue.js', 'Frontend'],
     gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
     featured: true,
+    preview: 'trogster',
+    demoLabel: 'Visit Site',
     github: 'https://github.com/MilaniNcana',
     demo: 'https://trogster.com',
   },
@@ -353,6 +405,147 @@ onUnmounted(() => observer?.disconnect())
 .projects__cta {
   text-align: center;
 }
+
+/* Trogster sneak peek */
+.trogster-preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+.tp-topbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.tp-topbar__logo {
+  width: 16px;
+  height: 16px;
+  background: var(--mustard);
+  color: #0B0B0B;
+  font-size: 0.6rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.tp-topbar__title {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  flex: 1;
+  letter-spacing: 0.04em;
+}
+
+.tp-topbar__statuses {
+  display: flex;
+  gap: 4px;
+}
+
+.tp-status-pill {
+  font-size: 0.5rem;
+  padding: 1px 5px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.tp-status-pill--done { background: rgba(109, 179, 63, 0.2); color: #6DB33F; border: 1px solid rgba(109,179,63,0.3); }
+.tp-status-pill--active { background: rgba(212, 160, 23, 0.2); color: var(--mustard); border: 1px solid rgba(212,160,23,0.3); }
+
+.tp-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.tp-sidebar {
+  width: 28px;
+  background: rgba(0, 0, 0, 0.25);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.tp-sidebar__item {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.25);
+  transition: all 0.2s;
+}
+
+.tp-sidebar__item--active {
+  background: rgba(212, 160, 23, 0.15);
+  color: var(--mustard);
+}
+
+.tp-tasks {
+  flex: 1;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.tp-task {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 16px;
+}
+
+.tp-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tp-dot--done { background: #6DB33F; }
+.tp-dot--active { background: var(--mustard); }
+.tp-dot--pending { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.15); }
+
+.tp-task__bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  flex: 1;
+  max-width: 70%;
+}
+
+.tp-badge {
+  font-size: 0.45rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.tp-badge--done { background: rgba(109,179,63,0.2); color: #6DB33F; }
+.tp-badge--active { background: rgba(212,160,23,0.2); color: var(--mustard); }
+.tp-badge--pending { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); }
 
 @media (max-width: 768px) {
   .projects__grid {

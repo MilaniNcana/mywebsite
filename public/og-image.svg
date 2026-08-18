@@ -80,7 +80,7 @@
 
   <!-- Bottom bar -->
   <rect x="0" y="580" width="1200" height="50" fill="#0A0A0A"/>
-  <text x="64" y="611" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="18" fill="#505050">milanincana.vercel.app</text>
+  <text x="64" y="611" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="18" fill="#505050">milanidigital.vercel.app</text>
 
   <!-- Availability dot + label -->
   <circle cx="1080" cy="605" r="6" fill="#4CAF50"/>

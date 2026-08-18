@@ -91,6 +91,9 @@ const skills = [
   { name: 'SQL', icon: 'storage', level: 78, category: 'backend', color: 'linear-gradient(90deg, #4479A1, #7D1128)' },
   { name: 'Git', icon: 'account_tree', level: 85, category: 'tools', color: 'linear-gradient(90deg, #F05032, #D4A017)' },
   { name: 'Figma', icon: 'palette', level: 65, category: 'tools', color: 'linear-gradient(90deg, #F24E1E, #A259FF)' },
+  { name: 'Flutter', icon: 'phone_android', level: 70, category: 'tools', color: 'linear-gradient(90deg, #54C5F8, #01579B)' },
+  { name: 'Android Dev', icon: 'android', level: 68, category: 'tools', color: 'linear-gradient(90deg, #3DDC84, #1A6B3C)' },
+  { name: 'Postman', icon: 'send', level: 80, category: 'tools', color: 'linear-gradient(90deg, #FF6C37, #C05000)' },
   { name: 'Windows Support', icon: 'computer', level: 88, category: 'support', color: 'linear-gradient(90deg, #0078D4, #005a9e)' },
   { name: 'Hardware Repair', icon: 'build', level: 80, category: 'support', color: 'linear-gradient(90deg, #7D1128, #9B1635)' },
   { name: 'Networking', icon: 'router', level: 75, category: 'support', color: 'linear-gradient(90deg, #D4A017, #B8880F)' },
@@ -104,7 +107,7 @@ const skills = [
 
 const extraTools = [
   'GitHub', 'VS Code', 'Unit Testing', 'CORS', 'Agile Development',
-  'System Analysis', 'Problem Solving',
+  'System Analysis', 'Problem Solving', 'Auth', 'System Development',
 ]
 
 const filteredSkills = computed(() =>

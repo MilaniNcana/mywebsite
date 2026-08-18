@@ -1,7 +1,6 @@
 <template>
   <section id="about" class="section about">
     <!-- Background glow -->
-    <div class="glow-orb glow-mustard" style="width:600px;height:600px;top:50%;left:-200px;transform:translateY(-50%);opacity:0.4"></div>
 
     <div class="container about__inner">
       <!-- Left: Visual -->
